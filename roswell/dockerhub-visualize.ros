@@ -1,0 +1,20 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload '(:cl-dockerhub-visualize) :silent t)
+  )
+
+(defpackage :ros.script.dockerhub-visualize.3778917599
+  (:use :cl))
+(in-package :ros.script.dockerhub-visualize.3778917599)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (cl-dockerhub-visualize:update-db)
+  (cl-dockerhub-visualize:render-result-kata)
+  (cl-dockerhub-visualize:render-result-lint))
+;;; vim: set ft=lisp lisp:
