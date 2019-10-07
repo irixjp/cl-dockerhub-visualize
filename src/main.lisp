@@ -56,10 +56,11 @@
   (eazy-gnuplot:with-plots (*standard-output* :debug nil)
     (eazy-gnuplot:gp-setup :xdata :time
                            :timefmt "%Y-%m-%d %H:%M:%S"
-                           :format '(x "%Y-%m-%d")
+                           :format '(:x "%Y-%m")
                            :xtics (* 60 60 24 7 4)
+                           :xlabel '(:font "Times New Roman, 12")
+                           ::ylabel '(:font "Times New Roman, 12")
                            :output image-name
-                           :terminal :png
                            :key '(:bottom :right :font "Times New Roman, 12"))
     ;;(format t "~%unset key")
     (eazy-gnuplot:plot (lambda () (format t "~&~{~{~A ~A~%~}~}" data))
